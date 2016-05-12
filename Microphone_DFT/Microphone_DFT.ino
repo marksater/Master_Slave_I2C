@@ -1,3 +1,4 @@
+#include <Wire.h>
 //DFT!!!!! 
 // time to read microphone pin is 1.12 milsec
 // delay + 1.12 milsec = delta  in mill
@@ -14,8 +15,7 @@ unsigned int k,n,r,i ;
 
 
 void setup() {
-
-
+Wire.begin();
 Serial.begin(9600);
 Serial.println("==============================================");
 Serial.print("index");Serial.print("\t");Serial.print("time"); Serial.print("\t");Serial.print("sin/cos wave");Serial.print("\t");Serial.println("delta");
@@ -48,7 +48,7 @@ Serial.println("==============================================");
 }
 
 void loop() {
-  
+byte Tran=0;  
 Serial.print("Index");Serial.print("\t");Serial.print("Real");Serial.print("\t");Serial.print("Image");Serial.print("\t");Serial.print("Mag");Serial.print("\t");Serial.println("Freg");
 Serial.println("==============================================");   
   for(k=0; k <= N/2-1; k++){
@@ -76,6 +76,12 @@ Serial.print(k);Serial.print("\t");Serial.print(Fx[k]);Serial.print("\t");Serial
     Serial.println(" Hz");
     Serial.print("==============================================");
     Serial.println(" ");
+
+    Tran = GetMaxFrequency();
+    Wire.beginTransmission(8);
+    Wire.write(Tran);
+    Wire.endTransmission();
+    
     while(true)  
    {  }
 }
