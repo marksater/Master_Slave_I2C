@@ -2,7 +2,7 @@
 
 const int button = 3;
 const int mic = A0;
-const int N = 600.0; //Number of samples
+const int N = 600; //Number of samples
 const float pi = 3.141592654;
 float T; // k is divided by delta times number of samples or divided by t (Time)
 float f[N];  //Signal array
@@ -95,7 +95,7 @@ void DFT()
   for(k = 0; k <= N/2-1; k++){
     xSum = 0; ySum = 0;
     for(n = 0; n <= N-1; n++){
-      float arg = 2*pi*k*n/N;
+      float arg = 2*pi*k*n/float(N);
       xSum = xSum+f[n]*cos(arg);
       ySum = ySum+f[n]*sin(arg);
     }
