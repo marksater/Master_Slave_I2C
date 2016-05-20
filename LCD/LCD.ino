@@ -11,8 +11,7 @@ const int increment = 1;
 const int toneButton = 3;
 const int buttonUp = 7;
 const int buttonDown = 8;
-const int DO = 2; //Pin for Digital Output - DO
-const int DA = A0; // Pin for Analog Output - AO
+
 
 
 
@@ -58,11 +57,29 @@ void frequencyDown()
 
 void receiveEvent(int bytes)
 {
+  
   while( 1 < Wire.available()){
-    char c = Wire.read();
-    lcd.setCursor(11,1);
-    lcd.print(c); 
+    lcd.clear;
+    lcd.setCursor(15,1);
+    lcd.print("Wait!!!");
+    for(int i=0; i<24; i++){
+      lcd.scrollDisplayLeft();
+    }
+    lcd.clear;
+    lcd.setCursor(0,0);
+    lcd.print("Wait!!!");
+    for(int i=0; i<24;i++){
+      lcd.scrollDisplayRight();
+    }
+    lcd.clear;
+    lcd.setCursor (0,0);
+    lcd.print ("Selector: ");
+    lcd.setCursor(0,1);
+    lcd.print("Frequency: ");
+    lcd.setCursor (10,0);
+    lcd.print (frequencyTarget);
   }
+  
   frequency = Wire.read();
   lcd.setCursor(11,1);
   lcd.print(frequency);
@@ -70,6 +87,7 @@ void receiveEvent(int bytes)
 
 void PushButton()
 {
+  
   lcd.setCursor (10,0);
   if(digitalRead (buttonUp) == HIGH && digitalRead(buttonDown) == LOW ){
     if(frequencyTarget < maxFrequency){
