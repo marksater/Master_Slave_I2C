@@ -32,9 +32,8 @@ void setup()
 
 void loop() 
 {
-  
+
   Wire.onReceive(receiveEvent);
-  delay(150);
   PushButton();
   ScreenAdjustment();
 }
@@ -57,21 +56,17 @@ void frequencyDown()
 
 void receiveEvent(int bytes)
 {
-  
-  while( 1 < Wire.available()){
-    lcd.clear;
+    while( 1 < Wire.available()){
     lcd.setCursor(15,1);
     lcd.print("Wait!!!");
     for(int i=0; i<24; i++){
       lcd.scrollDisplayLeft();
     }
-    lcd.clear;
     lcd.setCursor(0,0);
     lcd.print("Wait!!!");
     for(int i=0; i<24;i++){
       lcd.scrollDisplayRight();
     }
-    lcd.clear;
     lcd.setCursor (0,0);
     lcd.print ("Selector: ");
     lcd.setCursor(0,1);
