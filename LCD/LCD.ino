@@ -56,29 +56,11 @@ void frequencyDown()
 
 void receiveEvent(int bytes)
 {
-    while( 1 < Wire.available()){
-    lcd.setCursor(15,1);
-    lcd.print("Wait!!!");
-    for(int i=0; i<24; i++){
-      lcd.scrollDisplayLeft();
-    }
-    lcd.setCursor(0,0);
-    lcd.print("Wait!!!");
-    for(int i=0; i<24;i++){
-      lcd.scrollDisplayRight();
-    }
-    lcd.setCursor (0,0);
-    lcd.print ("Selector: ");
-    lcd.setCursor(0,1);
-    lcd.print("Frequency: ");
-    lcd.setCursor (10,0);
-    lcd.print (frequencyTarget);
-  }
-  
-  frequency = Wire.read();
-  lcd.setCursor(11,1);
-  lcd.print(frequency);
+lcd.setCursor(11,1);
+int x = Wire.read();
+lcd.print(x);
 }
+
 
 void PushButton()
 {
