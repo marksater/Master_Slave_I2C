@@ -32,10 +32,8 @@ void loop()
   //run the transform
   if(dftProcess == true && recording == false){
     byte Transmission=0;
-    
-    Wire.beginTransmission(8);// begin transmission to uno
-    Wire.write("Wait");
     DFT();   
+    Wire.beginTransmission(8);// begin transmission to uno
     Transmission = GetMaxFrequency();
     Wire.write(Transmission);
     Wire.endTransmission();
